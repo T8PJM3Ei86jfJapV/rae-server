@@ -20,7 +20,9 @@ class User(object):
 
 
 class Permission(object):
-    def __init__(self, name, id=0, deleted = 0):
+    READ = 1
+    WRITE = 2
+    def __init__(self, name, id=0, deleted=0):
         self.id = id
         self.name = name
         self.deleted = deleted
@@ -33,4 +35,3 @@ class UserAgentPermission(object):
         self.agent_id = agent_id
         self.permission_id = permission_id
         self.deleted = deleted
-

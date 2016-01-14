@@ -5,7 +5,7 @@ from os import path
 settings = { 
     "static_path": path.join(path.dirname(__file__), "..", "static"),
     "template_path": path.join(path.dirname(__file__), "..", "templates"),
-    "login_url": "/login",
+    "login_url": "/auth/login",
     "cookie_secret": "Do63nua7TRa67R61dxxKYE4oxOkCJ06igBkbsPGtRzw=",
     "debug": True,
     "gzip": True,
