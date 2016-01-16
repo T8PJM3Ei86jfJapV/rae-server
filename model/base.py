@@ -22,7 +22,8 @@ class User(object):
 class Permission(object):
     READ = 1
     WRITE = 2
-    def __init__(self, name, id=0, deleted=0):
+    ADMIN = 3
+    def __init__(self, id, name, deleted=0):
         self.id = id
         self.name = name
         self.deleted = deleted

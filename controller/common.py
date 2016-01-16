@@ -15,10 +15,13 @@ class BaseHandler(tornado.web.RequestHandler):
         if not user_id: return None
         return self.user_dao.get_by_id(int(user_id))
 
+    def build_body(self, code=200, msg=''):
+        return '{\"code\": \"%s\", \"msg\": \"%s\"}' % (code, msg)
+
 
 class MainHandler(BaseHandler):
     def get(self):
-        self.write("Hello World!")
+        self.write("Hello World!\n")
 
 
 class HeartbeatHandler(BaseHandler):

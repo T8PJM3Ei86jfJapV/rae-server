@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+{% extends "../navbar.html" %}
+
+{% block title %}Add agent{% end %}
+
+{% block body %}
+<div class="container">
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon2">name</span>
+    <input id="inputName" type="text" class="form-control" placeholder="Agent's name" aria-describedby="basic-addon2">
+  </div>
+  <br></br>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon2">&nbsp;host&nbsp;</span>
+    <input id="inputHost" type="text" class="form-control" placeholder="Ip address or domain name" aria-describedby="basic-addon2">
+  </div>
+  <br></br>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon2">&nbsp;port&nbsp;</span>
+    <input id="inputPort" type="text" pattern="\d*" class="form-control" placeholder="Port that agent listened to" aria-describedby="basic-addon2">
+  </div>
+  <br></br>
+  <button id="submitBtn" type="button" class="btn btn-primary">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+  </button>
+</div>
+{% end %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+  $('#submitBtn').click(function(e) {
+    // Stop form from submitting normally
+    e.preventDefault();
+
+    $.ajax({
+      url: window.location.href,
+      type: 'POST',
+      data: {
+        name: $('#inputName').val(),
+        host: $('#inputHost').val(),
+        port: $('#inputPort').val()
+      },
+      success: function(data) {
+        if (data.code == '302') {
+          window.location.href = data.msg;
+        } else {
+          alert(data['msg']);
+        }
+      },
+      error: function(data) {
+        alert('internal error');
+      },
+      dataType: 'json',
+    });
+  });
+});
+</script> 
+{% end %}

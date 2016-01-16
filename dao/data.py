@@ -204,10 +204,10 @@ class UserAgentPermissionDao(BaseDao):
         self.db.execute(sql, id=id)
 
     def find_agents_by_user(self, user):
-        sql = 'select * from agent where exists ( ' \
+        sql = 'select * from agent where id in ( ' \
               'select distinct (t.agent_id) from user_agent_permission t ' \
-              'join agent a on t.agent_id = a.id where t.deleted = 0  and t.user_id = %(user_id)s' \
-              ') and deleted = 0;'
+              'join agent a on t.agent_id = a.id ' \
+              'where t.deleted = 0  and t.user_id = %(user_id)s and a.deleted = 0)'
         return [Agent(**x) for x in self.db.query(sql, user_id=user.id)]
 
     def find_pemissions(self, user, agent):
