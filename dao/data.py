@@ -207,7 +207,7 @@ class UserAgentPermissionDao(BaseDao):
         sql = 'select * from agent where id in ( ' \
               'select distinct (t.agent_id) from user_agent_permission t ' \
               'join agent a on t.agent_id = a.id ' \
-              'where t.deleted = 0  and t.user_id = %(user_id)s and a.deleted = 0)'
+              'where t.deleted = 0 and t.user_id = %(user_id)s and a.deleted = 0)'
         return [Agent(**x) for x in self.db.query(sql, user_id=user.id)]
 
     def find_pemissions(self, user, agent):
@@ -216,6 +216,20 @@ class UserAgentPermissionDao(BaseDao):
               'where t.user_id = %(user_id)s and t.agent_id = %(agent_id)s ' \
               'and t.deleted = 0 and p.deleted=0'
         return [Permission(**x) for x in self.db.query(sql, user_id=user.id, agent_id=agent.id)]
+
+    def find_pemission(self, user, agent):
+        """ Find max permission.
+        Note: owner > admin > visitor > forbid
+        Returns a pemission object.
+        """
+        sql = 'select p.* ' \
+              'from user_agent_permission t ' \
+              'left join permission p on t.permission_id = p.id ' \
+              'where t.user_id = %(user_id)s and t.agent_id = %(agent_id)s ' \
+              'and t.deleted = 0 and p.deleted=0 ' \
+              'having max(t.permission_id)'
+        res = self.db.get(sql, user_id=user.id, agent_id=agent.id)
+        return Permission(**res) if res is not None else None
 
 
 import random, string

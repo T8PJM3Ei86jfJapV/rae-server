@@ -20,10 +20,11 @@ class User(object):
 
 
 class Permission(object):
-    READ = 1
-    WRITE = 2
+    FORBID = 1
+    VISITOR = 2
     ADMIN = 3
-    def __init__(self, id, name, deleted=0):
+    OWNER = 4
+    def __init__(self, name, id=1, deleted=0):
         self.id = id
         self.name = name
         self.deleted = deleted
@@ -36,3 +37,10 @@ class UserAgentPermission(object):
         self.agent_id = agent_id
         self.permission_id = permission_id
         self.deleted = deleted
+
+def main():
+    permission = Permission(None)
+    print permission.id, permission.name, permission.deleted
+
+if __name__ == "__main__":
+    main()

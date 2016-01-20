@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% extends "../navbar.html" %}
+
+{% block title %}My agents{% end %}
+
+{% block body %}
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="col-xs-4">Name</th>
+          <th class="col-xs-4">IP Address</th>
+          <th class="col-xs-4">Permission</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for agent in agents %}
+        <tr>
+          <th  scope="row"><code>{{ agent.name }}</code></th>
+          <td >{{ agent.host }}</td>
+          <td class="text-success">{{ permission(agent).name }}</td>
+        </tr>
+        {% end %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% end %}

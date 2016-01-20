@@ -12,7 +12,7 @@ settings = {
 }
 
 mysql = {
-    "host": "192.168.229.131:3306",
+    "host": "192.168.229.135:3306",
     "database": "hello",
     "user": "user",
     "password": "password",
