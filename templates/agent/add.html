@@ -4,26 +4,32 @@
 
 {% block title %}Add agent{% end %}
 
+{% block head %}
+<link href="../../static/css/agent.add.css" rel="stylesheet">
+{% end %}
+
 {% block body %}
-<div class="container">
+<div class="container form-block">
   <div class="input-group">
     <span class="input-group-addon" id="basic-addon2">name</span>
     <input id="inputName" type="text" class="form-control" placeholder="Agent's name" aria-describedby="basic-addon2">
   </div>
-  <br></br>
   <div class="input-group">
-    <span class="input-group-addon" id="basic-addon2">&nbsp;host&nbsp;</span>
+    <span class="input-group-addon" id="basic-addon2">host</span>
     <input id="inputHost" type="text" class="form-control" placeholder="Ip address or domain name" aria-describedby="basic-addon2">
   </div>
-  <br></br>
   <div class="input-group">
-    <span class="input-group-addon" id="basic-addon2">&nbsp;port&nbsp;</span>
+    <span class="input-group-addon" id="basic-addon2">port</span>
     <input id="inputPort" type="text" pattern="\d*" class="form-control" placeholder="Port that agent listened to" aria-describedby="basic-addon2">
   </div>
-  <br></br>
-  <button id="submitBtn" type="button" class="btn btn-primary">
-    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-  </button>
+  <div class="button-holder">
+    <button id="submitBtn" type="button" class="btn btn-primary">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Submit
+    </button>
+    <button id="cancelBtn" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Cancel
+    </button>
+  </div>
 </div>
 {% end %}
 

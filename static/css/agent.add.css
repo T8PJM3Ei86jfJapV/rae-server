@@ -1,0 +1,24 @@
+.form-block {
+    text-align: center;
+    max-width: 540px;
+    padding: 5px;
+    margin: 10px auto;
+}
+
+.button-holder {
+    margin: 20px auto;
+}
+
+.button-holder button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.input-group {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.input-group-addon {
+    width: 70px;
+}
