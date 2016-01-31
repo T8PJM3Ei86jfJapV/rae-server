@@ -17,3 +17,8 @@ mysql = {
     "user": "user",
     "password": "password",
 }
+
+system = {
+    "temporary_path": path.join(path.dirname(__file__), "..", "tmp", "packages"),
+    "packages_path": path.join(path.dirname(__file__), "..", "tmp", "packages"),
+}

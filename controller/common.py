@@ -18,6 +18,9 @@ class BaseHandler(tornado.web.RequestHandler):
     def build_body(self, code=200, msg=''):
         return '{\"code\": \"%s\", \"msg\": \"%s\"}' % (code, msg)
 
+    def well_done(self):
+        self.write(self.build_body())
+
 
 class MainHandler(BaseHandler):
     def get(self):
