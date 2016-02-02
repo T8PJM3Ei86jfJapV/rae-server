@@ -232,6 +232,70 @@ class UserAgentPermissionDao(BaseDao):
         return Permission(**res) if res is not None else None
 
 
+class PackageDao(BaseDao):
+    def __init__(self):
+        super(PackageDao, self).__init__()
+
+    def save(self, package):
+        """Insert a package object into database.
+
+        package -- Package
+
+        Returns id of package inserted.
+        """
+        sql = 'insert into package(filename, create_time) ' \
+              'values(%(filename)s, %(create_time)s)'
+        return self.db.execute(sql, filename=package.filename, create_time=package.create_time)
+
+    def delete_by_id(self, id):
+        sql = 'update package set deleted = 1 where id = %(id)s'
+        self.db.execute(sql, id=id)
+
+
+class ServiceDao(BaseDao):
+    def __init__(self):
+        super(ServiceDao, self).__init__()
+
+    def save(self, service):
+        """Insert a service object into database.
+
+        service -- Service
+
+        Returns id of service inserted.
+        """
+        sql = 'insert into service(agent_id, package_id) ' \
+              'values(%(agent_id)s, %(package_id)s)'
+        return self.db.execute(sql, agent_id=service.agent_id, package_id=service.package_id)
+
+    def update(self, service):
+        """Update an service object into database by its id.
+
+        service -- Service
+
+        Returns 0.
+        """
+        sql = 'update service set agent_id = %(agent_id)s, package_id = %(package_id)s, ' \
+              'deleted = %(deleted)s where id = %(id)s'
+        return self.db.execute(sql, id=service.id, agent_id=service.agent_id, package_id=service.package_id,
+                               deleted=service.deleted)
+
+    def save_or_update(self, service):
+        """Save or update a service object into database by its id.
+
+        service -- Service
+
+        Note:
+            If the id of service equals to 0, save it into database. If the id
+        is not equals to 0, update by its id.
+            If save successfully, returns the id of service inserted. If update
+        successfully or not, return 0.
+        """
+        return self.save(service) if service.id == 0 else self.update(service)
+
+    def delete_by_id(self, id):
+        sql = 'update service set deleted = 1 where id = %(id)s'
+        self.db.execute(sql, id=id)
+
 import random, string
 def get_string():
     return ''.join([random.choice(string.ascii_letters) for _ in range(6)])
