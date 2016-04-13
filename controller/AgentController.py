@@ -2,7 +2,7 @@
 
 import tornado.web
 
-from model.base import *
+from model import *
 
 from dao.pattern import DataDaoFactory
 
@@ -41,13 +41,14 @@ class AddHandler(BaseHandler):
         self.uap_dao.save(uap)
         self.write(self.build_body(302, '/agent/list'))
 
-class AdminHandler(BaseHandler):
+class ManageHandler(BaseHandler):
     def __init__(self, application, request, **kwargs):
-        super(AdminHandler, self).__init__(application, request, **kwargs)
+        super(ManageHandler, self).__init__(application, request, **kwargs)
         # TODO
 
-    def get(self):
-        self.render('agent/admin.html')
+    def get(self, agent_name):
+        self.write(agent_name)
+        # self.render('agent/manage.html')
 
     def post(self):
         pass

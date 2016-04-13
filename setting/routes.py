@@ -1,17 +1,18 @@
 # -*- coding:utf-8 -*-
 
-from controller.common import MainHandler, HeartbeatHandler
-from controller import auth, agent, package
+from controller.base import MainHandler, HeartbeatHandler
+from controller import AuthController, AgentController, PackageController
 
 urls = [
     (r"/", MainHandler),
     (r"/heartbeat", HeartbeatHandler),
-    (r"/auth/login", auth.LoginHandler),
-    (r"/auth/logout", auth.LogoutHandler),
-    (r"/auth/register", auth.RegisterHandler),
-    (r"/agent/add", agent.AddHandler),
-    (r"/agent/list", agent.ListHandler),
-    (r"/package/upload", package.UploadHandler),
-    (r"/package/upload/notify", package.UploadNotifyHandler),
-    (r"/package/upload/multipart", package.UploadMultipartHandler),
+    (r"/auth/login", AuthController.LoginHandler),
+    (r"/auth/logout", AuthController.LogoutHandler),
+    (r"/auth/register", AuthController.RegisterHandler),
+    (r"/agent/add", AgentController.AddHandler),
+    (r"/agent/list", AgentController.ListHandler),
+    (r"/agent/manage/(\w+)", AgentController.ManageHandler),
+    (r"/package/upload", PackageController.UploadHandler),
+    (r"/package/upload/notify", PackageController.UploadNotifyHandler),
+    (r"/package/upload/multipart", PackageController.UploadMultipartHandler),
 ]

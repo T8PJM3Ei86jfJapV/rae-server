@@ -2,7 +2,7 @@
 
 import tornado.web
 
-from model.base import *
+from model import *
 
 from dao.base import *
 from dao.pattern import DataDaoFactory

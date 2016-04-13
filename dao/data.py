@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from dao.base import *
-from model.base import *
+from model import *
 
 
 class AgentDao(BaseDao):
@@ -222,8 +222,7 @@ class UserAgentPermissionDao(BaseDao):
         Note: owner > admin > visitor > forbid
         Returns a pemission object.
         """
-        sql = 'select p.* ' \
-              'from user_agent_permission t ' \
+        sql = 'select p.* from user_agent_permission t ' \
               'left join permission p on t.permission_id = p.id ' \
               'where t.user_id = %(user_id)s and t.agent_id = %(agent_id)s ' \
               'and t.deleted = 0 and p.deleted=0 ' \
