@@ -47,8 +47,7 @@ class ManageHandler(BaseHandler):
         # TODO
 
     def get(self, agent_name):
-        self.write(agent_name)
-        # self.render('agent/manage.html')
+        self.render('agent/manage.html')
 
     def post(self):
         pass

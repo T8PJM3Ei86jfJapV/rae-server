@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+{% extends "../navbar.html" %}
+
+{% block title %}Manage{% end %}
+
+{% block head %}
+<link href="/static/css/agent.manage.css" rel="stylesheet">
+{% end %}
+
+{% block body %}
+<div class="container form-block">
+
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th> 
+        <th></th>
+       </tr>
+     </thead>
+     <tbody>
+      <tr>
+        <th scope="row">Address</th>
+        <td>Mark</td>
+      </tr>
+      <tr>
+        <th scope="row">Port</th>
+        <td>Jacob</td>
+      </tr>
+      <tr>
+        <th scope="row">Status</th>
+        <td>Larry</td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon2">name</span>
+    <input id="inputName" type="text" class="form-control" placeholder="Agent's name" aria-describedby="basic-addon2">
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon2">host</span>
+    <input id="inputHost" type="text" class="form-control" placeholder="Ip address or domain name" aria-describedby="basic-addon2">
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon2">port</span>
+    <input id="inputPort" type="text" pattern="\d*" class="form-control" placeholder="Port that agent listened to" aria-describedby="basic-addon2">
+  </div>
+  <div class="button-holder">
+    <button id="submitBtn" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Pull
+    </button>
+    <button id="cancelBtn" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Deploy
+    </button>
+    <button id="cancelBtn" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Stop
+    </button>
+  </div>
+  
+
+
+  <div class="bs-callout bs-callout-info" id="callout-type-dl-truncate">
+    <h4>Auto-truncating</h4>
+    <p>Horizontal description lists will truncate terms that are too long to fit in the left column with <code>text-overflow</code>. In narrower viewports, they will change to the default stacked layout.</p>
+  </div>
+
+  
+</div>
+{% end %}
