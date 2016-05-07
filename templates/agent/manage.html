@@ -21,43 +21,48 @@
      </thead>
      <tbody>
       <tr>
+        <th scope="row">Name</th>
+        <td>阿里云青岛</td>
+      </tr>
+      <tr>
         <th scope="row">Address</th>
-        <td>Mark</td>
+        <td>115.28.6.83</td>
       </tr>
       <tr>
         <th scope="row">Port</th>
-        <td>Jacob</td>
+        <td>15501</td>
       </tr>
       <tr>
         <th scope="row">Status</th>
-        <td>Larry</td>
+        <td>Stopped</td>
       </tr>
+      <tr>
+        <th scope="row">Package</th>
+        <td><a href="#">hello-release-v1.0.0.tar.gz</a></td>
+      </tr>
+
     </tbody>
   </table>
   
 
 
   <div class="input-group">
-    <span class="input-group-addon" id="basic-addon2">name</span>
-    <input id="inputName" type="text" class="form-control" placeholder="Agent's name" aria-describedby="basic-addon2">
+    <span class="input-group-addon" id="basic-addon2">new package</span>
+    <input id="inputName" type="text" class="form-control" placeholder="Choose new package" aria-describedby="basic-addon2">
   </div>
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon2">host</span>
-    <input id="inputHost" type="text" class="form-control" placeholder="Ip address or domain name" aria-describedby="basic-addon2">
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon2">port</span>
-    <input id="inputPort" type="text" pattern="\d*" class="form-control" placeholder="Port that agent listened to" aria-describedby="basic-addon2">
-  </div>
+
   <div class="button-holder">
     <button id="submitBtn" type="button" class="btn btn-default">
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Pull
+      <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload
+    </button>
+    <button id="submitBtn" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Pull
     </button>
     <button id="cancelBtn" type="button" class="btn btn-default">
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Deploy
+      <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start
     </button>
     <button id="cancelBtn" type="button" class="btn btn-default">
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Stop
+      <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Stop
     </button>
   </div>
   

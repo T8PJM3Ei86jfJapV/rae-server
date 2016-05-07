@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import logging
 
 from tornado.web import stream_request_body
 from tornado.httputil import parse_body_arguments
@@ -9,6 +10,9 @@ from tornado import gen
 
 from controller.common import BaseHandler
 from setting.config import system
+
+
+logger = logging.getLogger('PackageController')
 
 
 class UploadHandler(BaseHandler):
@@ -40,6 +44,8 @@ class UploadMultipartHandler(BaseHandler):
 
         with open(os.path.join(directory, str(index)), 'wb+') as fout:
             fout.write(files['file'][0].get('body', ''))
+        
+        logger.info('recieved and saved chunk {0}'.format(index))
 
     def post(self):
         self.well_done()
@@ -61,11 +67,15 @@ class UploadNotifyHandler(BaseHandler):
                 chunk = os.path.join(directory, str(index))
                 stream = open(chunk, 'rb').read()
                 fout.write(stream)
+        
+        logger.info('file merged: {0}'.format(name))
+        
         # shutil.rmtree(directory)
 
         # count = sum(os.path.isfile(os.path.join(directory, '..')) for x in os.walk(directory))
         # if count == 0:
         #     shutil.rmtree(os.path.join(system['temporary_path'], uuid))
+        
 
         self.well_done()
 
