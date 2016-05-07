@@ -6,7 +6,7 @@ from model import *
 
 from dao.pattern import DataDaoFactory
 
-from controller.common import BaseHandler
+from controller.base import BaseHandler
 
 
 class ListHandler(BaseHandler):
