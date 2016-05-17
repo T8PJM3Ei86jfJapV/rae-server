@@ -10,17 +10,19 @@
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th class="col-xs-4">Name</th>
-          <th class="col-xs-4">IP Address</th>
-          <th class="col-xs-4">Permission</th>
+          <th>Name</th>
+          <th>IP Address</th>
+          <th>Permission</th>
+          <th>Operation</th>
         </tr>
       </thead>
       <tbody>
         {% for agent in agents %}
         <tr>
-          <th  scope="row"><code>{{ agent.name }}</code></th>
+          <th scope="row"><code>{{ agent.name }}</code></th>
           <td >{{ agent.host }}</td>
           <td class="text-success">{{ permission(agent).name }}</td>
+          <td><a href="/agent/manage/{{ agent.id }}">magage</a></td>
         </tr>
         {% end %}
       </tbody>

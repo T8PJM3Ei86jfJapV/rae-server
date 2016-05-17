@@ -240,11 +240,11 @@ class PackageDao(BaseDao):
 
         package -- Package
 
-        Returns id of package inserted.
+        Returns id of package record inserted.
         """
-        sql = 'insert into package(filename, create_time) ' \
-              'values(%(filename)s, %(create_time)s)'
-        return self.db.execute(sql, filename=package.filename, create_time=package.create_time)
+        sql = 'insert into package(agent_id, rel_path) ' \
+              'values(%(agent_id)s, %(rel_path)s)'
+        return self.db.execute(sql, agent_id=package.agent_id, rel_path=package.rel_path)
 
     def delete_by_id(self, id):
         sql = 'update package set deleted = 1 where id = %(id)s'

@@ -42,10 +42,10 @@ class UserAgentPermission(object):
 
 
 class Package(object):
-    def __init__(self, filename, id=0, create_time=time.strftime('%Y-%m-%d %H:%M:%S'), deleted=0):
+    def __init__(self, agent_id, rel_path, id=0, deleted=0):
         self.id = id
-        self.filename = filename
-        self.create_time = create_time
+        self.agent_id = agent_id
+        self.rel_path = rel_path
         self.deleted = deleted
 
 

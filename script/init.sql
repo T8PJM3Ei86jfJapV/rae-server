@@ -37,7 +37,7 @@ CREATE TABLE `package` (
   `id` int(11) NOT NULL,
   `agent_id` int(11) NOT NULL,
   `rel_path` varchar(256) NOT NULL,
-  `deleted` tinyint(1) NOT NULL
+  `deleted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `sys_access_log` (

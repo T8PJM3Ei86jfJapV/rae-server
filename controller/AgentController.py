@@ -46,7 +46,7 @@ class ManageHandler(BaseHandler):
         super(ManageHandler, self).__init__(application, request, **kwargs)
         # TODO
 
-    def get(self, agent_name):
+    def get(self, agent_id):
         self.render('agent/manage.html')
 
     def post(self):

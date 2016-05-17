@@ -11,7 +11,7 @@ urls = [
     (r"/auth/register", AuthController.RegisterHandler),
     (r"/agent/add", AgentController.AddHandler),
     (r"/agent/list", AgentController.ListHandler),
-    (r"/agent/manage/(\w+)", AgentController.ManageHandler),
+    (r"/agent/manage/(\d+)", AgentController.ManageHandler),
     (r"/package/upload", PackageController.UploadHandler),
     (r"/package/upload/notify", PackageController.UploadNotifyHandler),
     (r"/package/upload/multipart", PackageController.UploadMultipartHandler),
