@@ -22,23 +22,27 @@
      <tbody>
       <tr>
         <th scope="row">Name</th>
-        <td>阿里云青岛</td>
+        <td id="">{{ agent.name }}</td>
       </tr>
       <tr>
         <th scope="row">Address</th>
-        <td>115.28.6.83</td>
+        <td>{{ agent.host }}</td>
       </tr>
       <tr>
-        <th scope="row">Port</th>
-        <td>15501</td>
+        <th scope="row">Agent port</th>
+        <td>{{ agent.port }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Service port</th>
+        <td>8080</td>
       </tr>
       <tr>
         <th scope="row">Status</th>
-        <td>Stopped</td>
+        <td>{{ status }}</td>
       </tr>
       <tr>
         <th scope="row">Package</th>
-        <td><a href="#">hello-release-v1.0.0.tar.gz</a></td>
+        <td><a href="/res/packages/{{ rel_path }}">{{ rel_path }}</a></td>
       </tr>
 
     </tbody>
@@ -52,16 +56,16 @@
   </div>
 
   <div class="button-holder">
-    <button id="submitBtn" type="button" class="btn btn-default">
+    <button id="uploadBtn" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload
     </button>
-    <button id="submitBtn" type="button" class="btn btn-default">
+    <button id="pullBtn" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Pull
     </button>
-    <button id="cancelBtn" type="button" class="btn btn-default">
+    <button id="startBtn" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start
     </button>
-    <button id="cancelBtn" type="button" class="btn btn-default">
+    <button id="stopBtn" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Stop
     </button>
   </div>
@@ -69,10 +73,14 @@
 
 
   <div class="bs-callout bs-callout-info" id="callout-type-dl-truncate">
-    <h4>Auto-truncating</h4>
-    <p>Horizontal description lists will truncate terms that are too long to fit in the left column with <code>text-overflow</code>. In narrower viewports, they will change to the default stacked layout.</p>
+    <h4>Instructions</h4>
+    <p>Coming soon.</p>
   </div>
 
   
 </div>
+{% end %}
+
+{% block script %}
+    <script src="../static/js/agent.manage.js"></script>
 {% end %}

@@ -78,6 +78,15 @@ class AgentDao(BaseDao):
         """
         return self.save(agent) if agent.id == 0 else self.update(agent)
 
+    def get_last_package_id(self, id):
+        """ Return last package by agent if exists,
+            else return None
+        :param agent:
+        :return: last package id of specific agent
+        """
+        sql = 'select max(id) as last_id from package where agent_id = %(id)s'
+        res = self.db.get(sql, id=id)
+        return res['last_id']
 
 class UserDao(BaseDao):
     """ User DAO Class
@@ -245,6 +254,18 @@ class PackageDao(BaseDao):
         sql = 'insert into package(agent_id, rel_path) ' \
               'values(%(agent_id)s, %(rel_path)s)'
         return self.db.execute(sql, agent_id=package.agent_id, rel_path=package.rel_path)
+
+    def get_by_id(self, id):
+        """Get an package object by id.
+
+        id -- integer
+
+        Note: If the query has no results, returns None. If it has
+        more than one result, raises an exception.
+        """
+        sql = 'select * from package where deleted = 0 and id = %(id)s'
+        res = self.db.get(sql, id=id)
+        return Package(**res) if res is not None else None
 
     def delete_by_id(self, id):
         sql = 'update package set deleted = 1 where id = %(id)s'

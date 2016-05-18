@@ -11,6 +11,33 @@ logger = logging.getLogger('AgentService')
 DEFAULT_SERVICE_PORT = '8080'
 
 
+def get_agent_by_id(agent_id):
+    agent_dao = DataDaoFactory().get('AgentDao')
+    agent = agent_dao.get_by_id(agent_id)
+    # return agent if exists
+    # else raise error
+    if agent:
+        return agent
+    else:
+        raise Exception('Agent not found!')
+
+
+def get_last_package(agent_id):
+    agent_dao = DataDaoFactory().get('AgentDao')
+    pkg_dao = DataDaoFactory().get('PackageDao')
+
+    logger.info('get last package by agent id: agent_id = {0}'.format(agent_id))
+    pkg_id = agent_dao.get_last_package_id(agent_id)
+    logger.info('the last package id is {0}'.format(pkg_id))
+
+    if not pkg_id:
+        return None
+
+    # get package object by its id
+    package = pkg_dao.get_by_id(pkg_id)
+    return package
+
+
 def create(agent):
     agent_dao = DataDaoFactory().get('AgentDao')
     agent_dao.save_or_update(agent)

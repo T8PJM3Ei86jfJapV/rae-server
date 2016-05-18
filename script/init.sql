@@ -13,7 +13,8 @@ CREATE TABLE `agent` (
   `port` int(11) NOT NULL,
   `enable` tinyint(1) NOT NULL DEFAULT '1',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `index_name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -30,14 +31,17 @@ CREATE TABLE `user_agent_permission` (
   `agent_id` int(11) DEFAULT NULL,
   `permission_id` int(11) DEFAULT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `index_user_agent` (`user_id`, `agent_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `package` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `agent_id` int(11) NOT NULL,
   `rel_path` varchar(256) NOT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `index_agent` (`agent_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `sys_access_log` (
@@ -51,5 +55,6 @@ CREATE TABLE `sys_access_log` (
   `request_body` text DEFAULT NULL,
   `os` varchar(150) NOT NULL,
   `browser` varchar(150) NOT NULL,
-  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
